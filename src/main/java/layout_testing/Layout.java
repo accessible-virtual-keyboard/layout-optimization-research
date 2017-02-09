@@ -7,7 +7,7 @@ import java.util.*;
  * Created by Tor Martin Holen on 30-Jan-17.
  */
 public class Layout{
-    public static final String ABC = " abcdefghijklmnopqrstuvwxyz";
+    public static final String ABC = " abcdefghijklmnopqrstuvwxyz"; //todo
     //public static final String ETAO = " etaoinshrdlcumwfgypbvkjxqz"; //Wikipedia
     public static final String ETAO = " etaoinsrhldcumfpgwybvkxjqz"; //Norvig's website
     public static final String QWERTY = " qwertyuiopasdfghjklzxcvbnm";
@@ -32,9 +32,27 @@ public class Layout{
     private Dictionary dictionary;
     private String[] layout;
     private static HashMap<String, String> adaptiveLayout;
-    private HashMap<String, String[]> adaptiveLayoutVariant;
+    private HashMap<String, String[]> adaptiveLayoutVariant; //todo
     private LayoutProperties properties;
     private LayoutDictionary dictionaryEnabled;
+
+    public void printAdaptiveLayout(){
+        String lettersLeft = ABC;
+        System.out.println("HashMap<String,String[]> adaptiveLayout = new HashMap<>();");
+        while(lettersLeft.length() != 0){
+            String letter = lettersLeft.substring(0,1);
+            String[] currentLayout = adaptiveLayoutVariant.get(letter);
+            lettersLeft = lettersLeft.substring(1);
+            //String toPrint = Arrays.toString(currentLayout);
+            //System.out.println(toPrint);
+            String toPrint = "adaptiveLayout.put(\"" + letter + "\", new String[]{";
+            for (int i = 0; i < currentLayout.length; i++) {
+
+                toPrint += "\"" + currentLayout[i] + "\",";
+            }
+            System.out.println(toPrint.substring(0,toPrint.length()-1) + "});");
+        }
+    }
 
     /**
      * Creates a normal layout.

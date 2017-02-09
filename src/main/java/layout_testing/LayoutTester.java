@@ -57,7 +57,11 @@ public class LayoutTester {
         Layout etaoMDL = new Layout("ETAO Multi-line Dictionary Layout", Layout.ETAO, testText, baseEfficiency, defaultLayoutRows, defaultLayoutColumns, Layout.LayoutProperties.MULTILINE, Layout.LayoutDictionary.DICTIONARY );
         Layout etaoDDL = new Layout("ETAO Diagonalized Dictionary Layout", Layout.ETAO, testText, baseEfficiency, defaultLayoutRows, defaultLayoutColumns, Layout.LayoutProperties.DIAGONALIZE, Layout.LayoutDictionary.DICTIONARY );
 
-        Layout.printResultsLatex(testText);
+        aMDL.printAdaptiveLayout();
+
+        //Layout.printResultsLatex(testText);
+
+
     }
 
 }

@@ -136,18 +136,22 @@ public class Dictionary {
     }
 
     public void printPrimarySuggestions(){
+
         printSuggestions(primarySuggestions, "Primary");
     }
 
     public void printSecondarySuggestions(){
+
         printSuggestions(secondarySuggestions, "Secondary");
     }
 
     public ArrayList<DictionaryEntry> getPrimarySuggestions() {
+
         return primarySuggestions;
     }
 
     public ArrayList<DictionaryEntry> getSecondarySuggestions() {
+
         return secondarySuggestions;
     }
 
