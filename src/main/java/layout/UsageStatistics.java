@@ -16,7 +16,7 @@ public class UsageStatistics {
 
     private final String outerAlphabet = "abcdefghijklmnopqrstuvwxyz";
     private final String innerAlphabet = "abcdefghijklmnopqrstuvwxyz ";
-    private int index;
+    private int index; // Global index variable used in accessing findOptimalLayout useful for print methods used simultaneously
 
     private HashMap<String, HashMap<String, Integer>> statistics;
     private HashMap<String, String> optimalLayouts;
@@ -101,6 +101,7 @@ public class UsageStatistics {
         }
     }
 
+
     public void printStatisticLine() {
         String result = statistics.toString().replaceAll("},", "}");
         System.out.println(result);
@@ -140,7 +141,9 @@ public class UsageStatistics {
 
             sortList(letterStatisticsArrayList);
             addLayoutToHashMap(letterStatisticsArrayList);
-            printLayoutCopyFriendly(letterStatisticsArrayList);
+
+            //printLayoutCopyFriendly(letterStatisticsArrayList);// Only one at a time
+            printLayoutDataSpreadsheetFriendly(letterStatisticsArrayList); // Only one at a time
             index++;
 
             firstAlphabet = firstAlphabet.substring(1);
@@ -160,8 +163,21 @@ public class UsageStatistics {
     private void printLayoutCopyFriendly(ArrayList<LetterStatistics> list) {
         System.out.print(outerAlphabet.charAt(index) + "\t");
         for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i).getLetter()); // + ": " +  list.get(i).getOccurrences() + "   ");
+            System.out.print(list.get(i).getLetter()); //+ ": " +  list.get(i).getOccurrences() + "   ");
         }
+        System.out.println();
+    }
+
+    private void printLayoutDataSpreadsheetFriendly(ArrayList<LetterStatistics> list) {
+
+        String lettersToPrint = outerAlphabet.charAt(index) + ":\t";
+        String numbersToPrint = outerAlphabet.charAt(index) + ":\t";
+        for (int i = 0; i < list.size(); i++) {
+            lettersToPrint += list.get(i).getLetter().replace(" ", "_") + "\t"; //+ ": " +  list.get(i).getOccurrences() + "   ");
+            numbersToPrint += list.get(i).getOccurrences() + "\t";
+        }
+        System.out.println(lettersToPrint);
+        System.out.println(numbersToPrint);
         System.out.println();
     }
 

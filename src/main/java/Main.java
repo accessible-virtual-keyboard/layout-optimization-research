@@ -1,5 +1,6 @@
 import layout.LetterLogger;
 import layout_testing.LayoutTester;
+import tools.StringUtil;
 
 import java.io.IOException;
 
@@ -13,7 +14,8 @@ public class Main {
         LetterLogger letterLogger = new LetterLogger();
         letterLogger.sampleLetterOccurrence();
         letterLogger.getStats().findOptimalLayouts();
-        letterLogger.getStats().printStatisticsCopyFriendly();
+        //letterLogger.getStats().printStatisticsCopyFriendly();
+        //letterLogger.getStats().printAdaptiveLayoutDataStatistics();
 
         //Code for testing different layouts
         LayoutTester layoutTester = new LayoutTester(letterLogger.getStats().getOptimalLayouts(), 2, 5, 6);
@@ -33,6 +35,6 @@ public class Main {
 
         dictionary.findSuggestions("life");
         dictionary.getSuggestions();*/
-
+        StringUtil.StringTabInjection("taoiswcbphfmdrelnguvyjkqxz");
     }
 }
