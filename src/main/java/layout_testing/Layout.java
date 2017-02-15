@@ -36,7 +36,7 @@ public class Layout{
     private LayoutProperties properties;
     private LayoutDictionary dictionaryEnabled;
 
-    public void printAdaptiveLayout(){
+    public void printAdaptiveLayoutCode(){
         String lettersLeft = ABC;
         System.out.println("HashMap<String,String[]> adaptiveLayout = new HashMap<>();");
         while(lettersLeft.length() != 0){

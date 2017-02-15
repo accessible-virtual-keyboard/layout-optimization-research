@@ -13,6 +13,8 @@ public class LayoutTester {
     private int defaultLayoutColumns;
     private String testText;
 
+    private Layout adaptive;
+
     /**
      * Provides the layout tester with some default values for testing.
      * @param adaptiveLayout The data used for the adaptive layout
@@ -29,6 +31,7 @@ public class LayoutTester {
 
     /**
      * Test different layouts and prints the result.
+     *
      * @param testText
      */
     public void testText(String testText){
@@ -49,7 +52,6 @@ public class LayoutTester {
         Layout qwertyML = new Layout("QWERTY Multi-line Layout", Layout.QWERTY, testText, baseEfficiency, 3, 10, Layout.LayoutProperties.MULTILINE, Layout.LayoutDictionary.NONE );
         Layout qwertyMDL= new Layout("QWERTY Multi-line Dictionary Layout", Layout.QWERTY, testText, baseEfficiency, 3, 10, Layout.LayoutProperties.MULTILINE, Layout.LayoutDictionary.DICTIONARY );
 
-
         Layout etaoSL = new Layout("ETAO Single-line Layout", Layout.ETAO, testText, singleLineBaseEfficiency, 1, 28, Layout.LayoutProperties.SINGLELINE, Layout.LayoutDictionary.NONE );
         Layout etaoML = new Layout("ETAO Multi-line Layout", Layout.ETAO, testText, baseEfficiency, defaultLayoutRows, defaultLayoutColumns, Layout.LayoutProperties.MULTILINE, Layout.LayoutDictionary.NONE );
         Layout etaoDL = new Layout("ETAO Diagonalized Layout", Layout.ETAO, testText, baseEfficiency, defaultLayoutRows, defaultLayoutColumns, Layout.LayoutProperties.DIAGONALIZE, Layout.LayoutDictionary.NONE);
@@ -57,11 +59,16 @@ public class LayoutTester {
         Layout etaoMDL = new Layout("ETAO Multi-line Dictionary Layout", Layout.ETAO, testText, baseEfficiency, defaultLayoutRows, defaultLayoutColumns, Layout.LayoutProperties.MULTILINE, Layout.LayoutDictionary.DICTIONARY );
         Layout etaoDDL = new Layout("ETAO Diagonalized Dictionary Layout", Layout.ETAO, testText, baseEfficiency, defaultLayoutRows, defaultLayoutColumns, Layout.LayoutProperties.DIAGONALIZE, Layout.LayoutDictionary.DICTIONARY );
 
-        aMDL.printAdaptiveLayout();
+        Layout.printResultsLatex(testText);
 
-        //Layout.printResultsLatex(testText);
+        adaptive = aMDL;
+    }
 
-
+    /**
+     * Must be called after testText method, this method is used for printing code to implement the adaptive layout in other projects
+     */
+    public void printAdaptiveLayoutCode(){
+        adaptive.printAdaptiveLayoutCode();
     }
 
 }
