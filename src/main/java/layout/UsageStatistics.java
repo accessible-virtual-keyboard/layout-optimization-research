@@ -1,5 +1,7 @@
 package layout;
 
+import layout_testing.Layout;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -143,7 +145,8 @@ public class UsageStatistics {
             addLayoutToHashMap(letterStatisticsArrayList);
 
             //printLayoutCopyFriendly(letterStatisticsArrayList);// Only one at a time
-            printLayoutDataSpreadsheetFriendly(letterStatisticsArrayList); // Only one at a time
+            //printLayoutDataSpreadsheetFriendly(letterStatisticsArrayList); // Only one at a time
+            printLayoutJavaFriendly(letterStatisticsArrayList);
             index++;
 
             firstAlphabet = firstAlphabet.substring(1);
@@ -158,6 +161,40 @@ public class UsageStatistics {
         }
         System.out.println("\\\\ \\hline" +
                 "");
+    }
+
+    /**
+     * Prints a layout sorted according to occurrences and if equal number of occurrences then it is sub sorted to etao order.
+     * Should only be used in a findOptimalLayouts at before the end of its first while loop.
+     * @param list
+     */
+    private void printLayoutJavaFriendly(ArrayList<LetterStatistics> list) {
+        final String etos = " etaoinsrhldcumfpgwybvkxjqz";
+        list.sort((o1, o2) -> {
+            if (o1.getOccurrences() > o2.getOccurrences()) {
+                return -1;
+            } else if (o1.getOccurrences() == o2.getOccurrences()) {
+                //TODO sort on etos order
+                if (etos.indexOf(o1.getLetter()) >= etos.indexOf(o2.getLetter())) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            } else {
+                return 1;
+            }
+        });
+
+        String result = "";
+        for (int i = 0; i < list.size(); i++) {
+            result += list.get(i).getLetter();
+        }
+
+        Layout l = new Layout();
+        result = l.diagonalizeLayoutAsString(result, 5, 6);
+
+        System.out.println("map.put(\"" + list.get(0).getParentLetter() + "\", \"" + result + "\");");
+
     }
 
     private void printLayoutCopyFriendly(ArrayList<LetterStatistics> list) {

@@ -45,8 +45,9 @@ public class LetterLogger {
         while (true) {
             try {
                 currentLine = bufferedReader.readLine().toLowerCase();
-                //System.out.println(currentLine);
+                System.out.println(currentLine);
                 int separatingIndex = currentLine.indexOf(" ");
+                //String currentWord = currentLine; // If word.list is used
                 String currentWord = currentLine.substring(0, separatingIndex).replaceAll("[^a-z ]", "");
                 while (currentWord.length() != 0) {
                     String firstLetter = currentWord.substring(0, 1);
@@ -61,8 +62,9 @@ public class LetterLogger {
 
             } catch (IndexOutOfBoundsException e) {
                 // Do nothing
+                e.printStackTrace();
             } catch (NullPointerException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
                 //stats.printStatisticLine();
                 System.out.println(currentLine);
                 break;

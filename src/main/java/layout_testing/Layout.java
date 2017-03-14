@@ -13,6 +13,12 @@ public class Layout{
     public static final String QWERTY = " qwertyuiopasdfghjklzxcvbnm";
     public static final String FIRST_LETTER_FREQUENCY = "taoiswcbphfmdrelnguvyjkqxz "; //Norvig's website
 
+    /**
+     * Only for accesing some methods
+     */
+    public Layout() {
+    }
+
 
     protected enum LayoutProperties {
         SINGLELINE,
@@ -42,15 +48,19 @@ public class Layout{
         while(lettersLeft.length() != 0){
             String letter = lettersLeft.substring(0,1);
             String[] currentLayout = adaptiveLayoutVariant.get(letter);
+            String layoutLetters = String.join("", currentLayout);
+            String result = diagonalizeLayoutAsString(layoutLetters, 5, 6);
             lettersLeft = lettersLeft.substring(1);
             //String toPrint = Arrays.toString(currentLayout);
             //System.out.println(toPrint);
-            String toPrint = "adaptiveLayout.put(\"" + letter + "\", new String[]{";
-            for (int i = 0; i < currentLayout.length; i++) {
+            //String toPrint = "adaptiveLayout.put(\"" + letter + "\", new String[]{";
+            String toPrint = "map.put(\"" + letter + "\", \"" + result + "\");";
+            /*for (int i = 0; i < currentLayout.length; i++) {
 
                 toPrint += "\"" + currentLayout[i] + "\",";
-            }
-            System.out.println(toPrint.substring(0,toPrint.length()-1) + "});");
+            }*/
+            /*System.out.println(toPrint.substring(0,toPrint.length()-1) + "});");*/
+            System.out.println(toPrint);
         }
     }
 
@@ -357,6 +367,21 @@ public class Layout{
             }
             lowestIndexSum++;
         }
+        //System.out.println(Arrays.toString(result));
+        return result;
+    }
+
+    /**
+     * Modifies base layout to an efficient diagonalized-multiline structure
+     * @param layout base layout string
+     * @param rows number of rows
+     * @param columns number of columns
+     * @return Returns diagonalized string array structure.
+     */
+    public String diagonalizeLayoutAsString(String layout, int rows, int columns) {
+        String result = "";
+        String[] temp = diagonalizeLayout(layout,rows,columns);
+        result = String.join("", temp);
         //System.out.println(Arrays.toString(result));
         return result;
     }
