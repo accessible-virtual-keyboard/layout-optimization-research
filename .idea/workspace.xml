@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99e6933b-300c-4b1e-90e0-bd658685b16b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Main.class" afterPath="$PROJECT_DIR$/target/classes/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/layout/UsageStatistics$1.class" afterPath="$PROJECT_DIR$/target/classes/layout/UsageStatistics$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/layout/UsageStatistics.class" afterPath="$PROJECT_DIR$/target/classes/layout/UsageStatistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/layout_testing/Layout.class" afterPath="$PROJECT_DIR$/target/classes/layout_testing/Layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AViKEYB/app/src/main/res/layout/layout_etos.xml" afterPath="$PROJECT_DIR$/../AViKEYB/app/src/main/res/layout/layout_etos.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/layout/UsageStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/layout/UsageStatistics.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/layout_testing/Layout.java" afterPath="$PROJECT_DIR$/src/main/java/layout_testing/Layout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/layout_testing/LayoutTester.java" afterPath="$PROJECT_DIR$/src/main/java/layout_testing/LayoutTester.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../backend/src/main/java/no/ntnu/stud/avikeyb/backend/Symbols.java" afterPath="$PROJECT_DIR$/../backend/src/main/java/no/ntnu/stud/avikeyb/backend/Symbols.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../backend/src/main/java/no/ntnu/stud/avikeyb/backend/layouts/AdaptiveLayout.java" afterPath="$PROJECT_DIR$/../backend/src/main/java/no/ntnu/stud/avikeyb/backend/layouts/AdaptiveLayout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../backend/src/main/java/no/ntnu/stud/avikeyb/backend/layouts/ETOSLayout.java" afterPath="$PROJECT_DIR$/../backend/src/main/java/no/ntnu/stud/avikeyb/backend/layouts/ETOSLayout.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
