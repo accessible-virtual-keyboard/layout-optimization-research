@@ -382,7 +382,7 @@ public class Layout{
         String result = "";
         String[] temp = diagonalizeLayout(layout,rows,columns);
         result = String.join("", temp);
-        //System.out.println(Arrays.toString(result));
+        System.out.println(result);
         return result;
     }
 

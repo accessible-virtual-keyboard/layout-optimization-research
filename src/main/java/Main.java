@@ -15,6 +15,9 @@ public class Main {
         letterLogger.sampleLetterOccurrence();
         letterLogger.getStats().findOptimalLayouts();
         letterLogger.getStats().printStatisticsCopyFriendly();
+        letterLogger.getStats().printETAO();
+
+
 
 
         //Code for testing different layouts

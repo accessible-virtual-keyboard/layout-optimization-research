@@ -197,6 +197,23 @@ public class UsageStatistics {
 
     }
 
+    public void printETAO(){
+        Layout l = new Layout();
+        String result = l.diagonalizeLayoutAsString(" etaoinsrhldcumfpgwybvkxjqz", 5, 6);
+        result = result.toUpperCase();
+        String finalResult = "";
+        while(result.length() != 0){
+            String addendum = result.substring(0,1);
+            if(addendum.equals(" ")){
+                finalResult += "Symbol." + "SPACE,";
+            }else {
+                finalResult += "Symbol." + addendum + ",";
+            }
+            result = result.substring(1);
+        }
+        System.out.println(finalResult);
+    }
+
     private void printLayoutCopyFriendly(ArrayList<LetterStatistics> list) {
         System.out.print(outerAlphabet.charAt(index) + "\t");
         for (int i = 0; i < list.size(); i++) {
