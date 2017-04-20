@@ -1,6 +1,7 @@
 package layout;
 
 import java.io.*;
+import java.util.HashMap;
 
 /**
  * Created by Tor Martin Holen on 23-Jan-17.
@@ -72,6 +73,50 @@ public class LetterLogger {
         }
     }
 
+    /**
+     * Samples the sequential occurrence of letters adding them to a statistic.
+     * @throws IOException
+     */
+    public void firstLetterOccurrence() throws IOException {
+        String currentLine = "";
+        HashMap<String, Integer> firstLetterFrequencies = stats.getFirstLetterFrequencies();
+        while (true) {
+            try {
+                currentLine = bufferedReader.readLine().toLowerCase();
+                //System.out.println(currentLine);
+                String currentLetter = currentLine.substring(0, 1);
+                if(currentLetter.matches("[a-zA-Z]")){
+                    int occurrence = firstLetterFrequencies.get(currentLetter);
+                    firstLetterFrequencies.put(currentLetter, ++occurrence);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                // Do nothing
+                e.printStackTrace();
+                stats.printFirstLetterFrequencies();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                //stats.printStatisticLine();
+                System.out.println(currentLine);
+                stats.printFirstLetterFrequencies();
+                break;
+            }
+        }
+        stats.printFirstLetterFrequencies();
+    }
+
+    public void firstLetterOccurrence(String text) throws IOException {
+        String[] words = text.toLowerCase().split(" ");
+        System.out.println("Words sampled: " + words.length);
+        HashMap<String, Integer> firstLetterFrequencies = stats.getFirstLetterFrequencies();
+        for (String s:words) {
+            String currentLetter = s.substring(0, 1);
+            if(currentLetter.matches("[a-zA-Z]")){
+                int occurrence = firstLetterFrequencies.get(currentLetter);
+                firstLetterFrequencies.put(currentLetter, ++occurrence);
+            }
+        }
+        stats.printFirstLetterFrequencies();
+    }
 
     /*public void sampleLetterOccurrence() throws IOException {
         boolean fileFinished = false;

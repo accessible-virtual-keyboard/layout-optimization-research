@@ -22,6 +22,7 @@ public class UsageStatistics {
 
     private HashMap<String, HashMap<String, Integer>> statistics;
     private HashMap<String, String> optimalLayouts;
+    private HashMap<String, Integer> firstLetterFrequencies;
 
 
     /**
@@ -36,10 +37,12 @@ public class UsageStatistics {
      * Initializes statistics HashMap
      */
     private void setupStatistics() {
-        statistics = new HashMap<String, HashMap<String, Integer>>();
+        statistics = new HashMap<>();
+        firstLetterFrequencies = new HashMap<>();
         String alphabet = outerAlphabet;
         while (alphabet.length() != 0) {
             statistics.put(alphabet.substring(0, 1), setupInnerStatistics());
+            firstLetterFrequencies.put(alphabet.substring(0, 1), 0);
             alphabet = alphabet.substring(1);
         }
         //printStatistics();
@@ -262,6 +265,27 @@ public class UsageStatistics {
 
             }
         });
+    }
+
+    public void printFirstLetterFrequencies(){
+        String alphabet = outerAlphabet;
+        ArrayList<LetterStatistics> resultList = new ArrayList();
+        while(alphabet.length() != 0){
+            resultList.add(new LetterStatistics("", alphabet.substring(0,1), firstLetterFrequencies.get(alphabet.substring(0,1))));
+            alphabet = alphabet.substring(1);
+        }
+        sortList(resultList);
+        for (LetterStatistics l:resultList) {
+            System.out.print(l.getLetter() + "\t");
+        }
+        System.out.println();
+        for (LetterStatistics l:resultList) {
+            System.out.print(l.getOccurrences() + "\t");
+        }
+    }
+
+    public HashMap<String, Integer> getFirstLetterFrequencies() {
+        return firstLetterFrequencies;
     }
 
     public HashMap<String, String> getOptimalLayouts() {
