@@ -12,7 +12,7 @@ public class LetterLogger {
     private BufferedReader bufferedReader; //Used to sample occurances
 
     /**
-     * Creates a
+     * Creates a letter logger which is used for sampling
      */
     public LetterLogger() {
         stats = new UsageStatistics();
@@ -48,7 +48,6 @@ public class LetterLogger {
                 currentLine = bufferedReader.readLine().toLowerCase();
                 System.out.println(currentLine);
                 int separatingIndex = currentLine.indexOf(" ");
-                //String currentWord = currentLine; // If word.list is used
                 String currentWord = currentLine.substring(0, separatingIndex).replaceAll("[^a-z ]", "");
                 while (currentWord.length() != 0) {
                     String firstLetter = currentWord.substring(0, 1);
@@ -65,6 +64,7 @@ public class LetterLogger {
                 // Do nothing
                 e.printStackTrace();
             } catch (NullPointerException e) {
+                //This occurs when there isn't any more words left in the word list
                 e.printStackTrace();
                 //stats.printStatisticLine();
                 System.out.println(currentLine);
