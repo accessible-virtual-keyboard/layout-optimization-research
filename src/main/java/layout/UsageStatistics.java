@@ -127,7 +127,7 @@ public class UsageStatistics {
     /**
      * Calculates and prints which layout strings is most optimal according to the data in the statistics HashMap.
      */
-    public void findOptimalLayouts() {
+    public void findOptimalLayouts(boolean printForJava, boolean printForCopy,boolean printForSpreadsheet) {
         optimalLayouts = new HashMap<String, String>();
         String firstAlphabet = outerAlphabet;
         while (firstAlphabet.length() != 0) {
@@ -147,14 +147,19 @@ public class UsageStatistics {
             sortList(letterStatisticsArrayList);
             addLayoutToHashMap(letterStatisticsArrayList);
 
-            //printLayoutCopyFriendly(letterStatisticsArrayList);// Only one at a time
-            //printLayoutDataSpreadsheetFriendly(letterStatisticsArrayList); // Only one at a time
-            printLayoutJavaFriendly(letterStatisticsArrayList);
+            if(printForCopy){
+                printLayoutCopyFriendly(letterStatisticsArrayList);
+            }
+            if(printForJava){
+                printLayoutJavaFriendly(letterStatisticsArrayList);
+            }
+            if(printForSpreadsheet){
+                printLayoutDataSpreadsheetFriendly(letterStatisticsArrayList);
+            }
             index++;
 
             firstAlphabet = firstAlphabet.substring(1);
         }
-        ;
     }
 
     private void printLayout(ArrayList<LetterStatistics> list) {
@@ -172,12 +177,11 @@ public class UsageStatistics {
      * @param list
      */
     private void printLayoutJavaFriendly(ArrayList<LetterStatistics> list) {
-        final String etos = " etaoinsrhldcumfpgwybvkxjqz";
+        /*final String etos = " etaoinsrhldcumfpgwybvkxjqz";
         list.sort((o1, o2) -> {
             if (o1.getOccurrences() > o2.getOccurrences()) {
                 return -1;
             } else if (o1.getOccurrences() == o2.getOccurrences()) {
-                //TODO sort on etos order
                 if (etos.indexOf(o1.getLetter()) >= etos.indexOf(o2.getLetter())) {
                     return 1;
                 } else {
@@ -186,7 +190,9 @@ public class UsageStatistics {
             } else {
                 return 1;
             }
-        });
+        });*/
+
+        sortOnEtao(list);
 
         String result = "";
         for (int i = 0; i < list.size(); i++) {
@@ -197,6 +203,24 @@ public class UsageStatistics {
         result = l.diagonalizeLayoutAsString(result, 5, 6);
 
         System.out.println("map.put(\"" + list.get(0).getParentLetter() + "\", \"" + result + "\");");
+
+    }
+
+    private void sortOnEtao(ArrayList<LetterStatistics> list){
+        final String etos = " etaoinsrhldcumfpgwybvkxjqz";
+        list.sort((o1, o2) -> {
+            if (o1.getOccurrences() > o2.getOccurrences()) {
+                return -1;
+            } else if (o1.getOccurrences() == o2.getOccurrences()) {
+                if (etos.indexOf(o1.getLetter()) >= etos.indexOf(o2.getLetter())) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            } else {
+                return 1;
+            }
+        });
 
     }
 
@@ -218,6 +242,8 @@ public class UsageStatistics {
     }
 
     private void printLayoutCopyFriendly(ArrayList<LetterStatistics> list) {
+        sortOnEtao(list);
+
         System.out.print(outerAlphabet.charAt(index) + "\t");
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i).getLetter()); //+ ": " +  list.get(i).getOccurrences() + "   ");
@@ -226,6 +252,7 @@ public class UsageStatistics {
     }
 
     private void printLayoutDataSpreadsheetFriendly(ArrayList<LetterStatistics> list) {
+        sortOnEtao(list);
 
         String lettersToPrint = outerAlphabet.charAt(index) + ":\t";
         String numbersToPrint = outerAlphabet.charAt(index) + ":\t";
